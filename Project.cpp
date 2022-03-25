@@ -4,8 +4,10 @@ using namespace std;
 
 const int MAX = 10000;
 
-int pierwsza[MAX], druga[MAX], first[MAX];
-int sum_first = 0;
+int pierwsza[MAX];
+int druga[MAX];
+int first[MAX];
+int sum_first = 0; // ilość liczb pierwszych do number_to_unfold
 
 void read(int lines) // zapis liczb wprowadzanych w tablicach
 {
@@ -35,11 +37,11 @@ bool if_first(int k) // funkcja od szukania liczby pierwszej
     return true;
 }
 
-void first_in_unfold(int k) // funkcja szukająca liczb pierwszych do liczby rozkładanej włącznie z nią jeżeli jest pierwsza
+void first_in_unfold(int k, int number_to_unfold) // funkcja szukająca liczb pierwszych do liczby rozkładanej włącznie z nią jeżeli jest pierwsza
 {
-    int n = 0; // liczba umieszająca liczbe pierwszą w tablicy
+    int n = 0; // indeks liczby pierwszej w tablicy liczb pierwszych 9 first[]
 
-    for (int i = 0; i <= druga[0]; i++)
+    for (int i = 0; i <= number_to_unfold; i++)
     {
 
         if (if_first(i) == true)
@@ -54,9 +56,8 @@ void first_in_unfold(int k) // funkcja szukająca liczb pierwszych do liczby roz
 int main() // 1 13 7
 {
     int lines;            // liczba kolejnych linii z liczbami
-    int number_to_unfold; // liczba do rozłożenia
-    int required_number;  // od 0 do liczby rozkładanej
-    int k = 0, tablica[100];
+    int number_to_unfold; // n - k = number_to_unfold ( liczba do rozłożenia )
+    int required_number;  // od algorytmu wypisywania ?!
 
     cin >> lines;
 
@@ -64,9 +65,18 @@ int main() // 1 13 7
 
     number_to_unfold = pierwsza[0] - druga[0];
 
-    first_in_unfold(druga[0]);
+    first_in_unfold(druga[0], number_to_unfold);
 
-    for (int i = 0; i < sum_first; i++) // algorytm łączenia w party
+    for (int i = 0; i < sum_first; i++) // check test
+    {
+        cout << first[i] << " ";
+    }
+    cout << "    " << sum_first << "      " << druga[0] << " + " << number_to_unfold << " ...";
+
+    return 0;
+}
+
+/*for (int i = 0; i < sum_first; i++) // algorytm łączenia w pary
     {
         if (first[i] > 0)
         {
@@ -86,18 +96,4 @@ int main() // 1 13 7
                 k++;
             }
         }
-    }
-
-    for (int i = 0; i < druga[0] + 1; i++) // check test
-    {
-        cout << first[i] << " ";
-    }
-    cout << "    " << sum_first << "      ";
-
-    for (int i = 0; i < ; i++) // check test
-    {
-        cout << druga[0] << " " << tablica[k] << " + ";
-    }
-
-    return 0;
-}
+    }*/
