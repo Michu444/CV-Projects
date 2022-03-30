@@ -4,9 +4,10 @@ using namespace std;
 
 const int MAX = 10000;
 
-int pierwsza[MAX];
-int druga[MAX];
-int first[MAX];
+int pierwsza[MAX]; // n
+int druga[MAX];    // k
+int first[MAX];    // liczby pierwsze do number_to_unfold (eg. 10 -> 2 , 3 , 5 , 7)
+int numbers[MAX];  // ilość liczb w danej liczby
 int sum_first = 0; // ilość liczb pierwszych do number_to_unfold
 
 void read(int lines) // zapis liczb wprowadzanych w tablicach
@@ -53,6 +54,29 @@ void first_in_unfold(int k, int number_to_unfold) // funkcja szukająca liczb pi
     }
 }
 
+void algor(int unfold, int sum)
+{
+    int temp, s = 0;
+
+    if (sum == unfold)
+    {
+        for (int i = 0; i < s; i++)
+        {
+            cout << druga[0] << " + " << numbers[i];
+        }
+    }
+    if (sum > unfold)
+    {
+        return;
+    }
+    for (int i = 0; i < sum_first; i++)
+    {
+        sum += first[i];
+        s++;
+        algor(unfold, sum);
+    }
+}
+
 int main() // 1 13 7
 {
     int lines;            // liczba kolejnych linii z liczbami
@@ -67,33 +91,13 @@ int main() // 1 13 7
 
     first_in_unfold(druga[0], number_to_unfold);
 
+    algor(number_to_unfold, 0);
+
     for (int i = 0; i < sum_first; i++) // check test
     {
         cout << first[i] << " ";
     }
-    cout << "    " << sum_first << "      " << druga[0] << " + " << number_to_unfold << " ...";
+    cout << "    " << sum_first << endl; // << "      " << druga[0] << " + " << number_to_unfold << " ...";
 
     return 0;
 }
-
-/*for (int i = 0; i < sum_first; i++) // algorytm łączenia w pary
-    {
-        if (first[i] > 0)
-        {
-            while (required_number != number_to_unfold)
-            {
-                if (required_number < number_to_unfold)
-                {
-                    required_number += first[i];
-                }
-                else if (required_number > number_to_unfold)
-                {
-                    required_number -= first[i];
-                    required_number += first[i + 1];
-                }
-
-                tablica[k] == first[i];
-                k++;
-            }
-        }
-    }*/

@@ -2,38 +2,41 @@
 
 using namespace std;
 
-string temp = "NIC";
+int first[8] = {2, 3, 5, 7};
 
-int first{2, 3, 5, 7, 11, 13, 17, 19};
+int numbers[10];
 
-float ile_dwojek(int n)
+int i = 3;
+
+void ile_dwojek(int unfold)
 {
-    int ilosc = 0, liczba = 0;
+    int sum = 7, s = 0;
 
-    while (liczba != n)
+    if (sum == unfold)
     {
-        if (n % 2 == 0)
-        {
-            liczba += 2;
-            ilosc++;
-        }
-        else
-        {
-            n -= 1;
-            temp = "ODJETE JEDEN";
-        }
+        cout << unfold;
     }
-
-    return ilosc;
+    if (sum < unfold)
+    {
+        sum += first[i];
+    }
+    if (sum > unfold)
+    {
+        i--;
+        return;
+    }
 }
 
 int main()
 {
-    int n;
 
-    cin >> n;
+    while (ile_dwojek(10) == unfold)
+        ile_dwojek(10);
 
-    cout << "Dwojek jest: " << ile_dwojek(n) << " " << temp;
+    for (int i = 0; i < 6; i++)
+    {
+        cout << numbers[i];
+    }
 
     return 0;
 }
