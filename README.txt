@@ -1,1 +1,0 @@
-Ogarnąc algorytm na wypisywanie tych kombinacji składania liczby do złożenia.
