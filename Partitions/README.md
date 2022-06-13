@@ -5,7 +5,7 @@ INPUT: In the first line: the number of consecutive lines. In the following line
 
 OUTPUT: Partitions separated by + . ( if partition exist )
 
-EXAMPLE: 
+#EXAMPLE: 
 
     Input
 
